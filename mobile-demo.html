@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancher Dashboard - Mobile Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1b1c21;
+            color: #fff;
+        }
+
+        .info-banner {
+            background: #0075a8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .info-banner h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-banner p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .instructions {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .instructions h2 {
+            color: #00d4ff;
+            margin: 30px 0 15px;
+        }
+
+        .instructions p, .instructions li {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .instructions ul {
+            margin-left: 30px;
+        }
+
+        .feature-list {
+            background: #2a2c32;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .feature-list h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .feature-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: #1b1c21;
+            border-left: 3px solid #0075a8;
+            border-radius: 4px;
+        }
+
+        .code {
+            background: #0d0e10;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .button {
+            display: inline-block;
+            background: #0075a8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 10px 5px;
+        }
+
+        .button:hover {
+            background: #005a82;
+        }
+
+        @media (max-width: 768px) {
+            .info-banner h1 {
+                font-size: 20px;
+            }
+            .info-banner p {
+                font-size: 14px;
+            }
+            .instructions {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-banner">
+        <h1>📱 Rancher Dashboard - Mobile Optimized</h1>
+        <p>The Rancher Dashboard has been fully optimized for mobile devices</p>
+        <p>Build completed successfully on branch: <strong>mobile-responsive-ui</strong></p>
+    </div>
+
+    <div class="instructions">
+        <h2>🚀 How to Run the Dashboard</h2>
+
+        <p>The mobile-optimized Rancher Dashboard requires a backend Rancher server. Here are your options:</p>
+
+        <div class="feature-list">
+            <h3>Option 1: Use Rancher Desktop</h3>
+            <div class="feature-item">
+                1. Install <a href="https://rancherdesktop.io/" style="color: #00d4ff;">Rancher Desktop</a><br>
+                2. Start Rancher Desktop<br>
+                3. Run: <code>API=https://localhost:6443 yarn dev</code>
+            </div>
+        </div>
+
+        <div class="feature-list">
+            <h3>Option 2: Docker-based Rancher</h3>
+            <div class="feature-item">
+                Run this command:<br>
+                <div class="code">
+docker run -d --restart=unless-stopped \<br>
+  -p 80:80 -p 443:443 \<br>
+  --privileged \<br>
+  rancher/rancher:latest
+                </div>
+                Then wait 5 minutes for startup and connect to https://localhost
+            </div>
+        </div>
+
+        <div class="feature-list">
+            <h3>Option 3: Public Rancher Demo</h3>
+            <div class="feature-item">
+                Point your dashboard to: <code>API=https://rancher.your-server.com</code>
+            </div>
+        </div>
+
+        <h2>✨ Mobile Features Implemented</h2>
+
+        <div class="feature-list">
+            <h3>Navigation & Layout</h3>
+            <div class="feature-item">✅ Hamburger menu for mobile (< 768px)</div>
+            <div class="feature-item">✅ Slide-out side navigation with smooth animations</div>
+            <div class="feature-item">✅ Responsive grid layouts (12-column to 1-column)</div>
+            <div class="feature-item">✅ Touch-friendly overlay to close menus</div>
+        </div>
+
+        <div class="feature-list">
+            <h3>Touch Optimization</h3>
+            <div class="feature-item">✅ Minimum 44px touch targets (Apple HIG compliant)</div>
+            <div class="feature-item">✅ 16px input font size (prevents iOS zoom)</div>
+            <div class="feature-item">✅ Increased button padding for easier tapping</div>
+            <div class="feature-item">✅ Smooth momentum scrolling</div>
+        </div>
+
+        <div class="feature-list">
+            <h3>Components Optimized</h3>
+            <div class="feature-item">✅ Tables - Horizontal scroll with touch support</div>
+            <div class="feature-item">✅ Forms - Vertical stacking and proper input sizing</div>
+            <div class="feature-item">✅ Modals - Full-screen on mobile</div>
+            <div class="feature-item">✅ Tabs - Horizontal scrolling tabs</div>
+            <div class="feature-item">✅ Cards - Full-width responsive cards</div>
+            <div class="feature-item">✅ Action menus - Larger touch targets</div>
+        </div>
+
+        <h2>📊 Files Modified</h2>
+        <div class="code" style="font-size: 12px;">
+Core Styles: 13 SCSS files<br>
+Components: 12 Vue components<br>
+Total Changes: 2000+ lines of mobile optimization<br>
+<br>
+Key files:<br>
+- shell/assets/styles/global/_mobile.scss (new)<br>
+- shell/assets/styles/global/_mobile-utilities.scss (new)<br>
+- shell/components/nav/Header.vue<br>
+- shell/components/templates/default.vue<br>
+- All global component styles
+        </div>
+
+        <h2>🧪 Testing on Mobile</h2>
+        <p>Use Chrome DevTools device emulation:</p>
+        <div class="code">
+1. Press F12 or Ctrl+Shift+I<br>
+2. Click device toggle icon (Ctrl+Shift+M)<br>
+3. Select: iPhone 14 Pro (430x932)<br>
+4. Test: iPad (768x1024)<br>
+5. Try landscape mode
+        </div>
+
+        <h2>📝 Git Commits</h2>
+        <div class="feature-list">
+            <div class="feature-item">ab61d88 - Fix SASS variable references</div>
+            <div class="feature-item">f2c262e - Optimize individual components for mobile</div>
+            <div class="feature-item">33c8dce - Comprehensive mobile optimization</div>
+            <div class="feature-item">6d7cd72 - Add mobile documentation</div>
+            <div class="feature-item">6f5b9de - Implement hamburger menu</div>
+            <div class="feature-item">b211a8d - Add responsive mobile styles</div>
+        </div>
+
+        <p style="text-align: center; margin: 40px 0; font-size: 18px;">
+            <strong>All changes committed to branch:</strong> <code>mobile-responsive-ui</code>
+        </p>
+    </div>
+</body>
+</html>
