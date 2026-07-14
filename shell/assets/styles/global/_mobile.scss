@@ -1,0 +1,134 @@
+// Mobile-specific responsive styles
+
+@media (max-width: 768px) {
+  HEADER {
+    flex-wrap: wrap;
+    padding: 8px;
+
+    .product {
+      font-size: 14px;
+
+      .cluster-name {
+        font-size: 14px !important;
+      }
+
+      .product-name {
+        font-size: 14px !important;
+      }
+    }
+
+    .filter {
+      width: 100%;
+      order: 10;
+      margin-top: 8px;
+    }
+
+    .rd-header-right {
+      .header-buttons {
+        gap: 4px;
+
+        .btn {
+          min-width: 36px;
+          padding: 6px 8px;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  // Make tables horizontally scrollable
+  .sortable-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    table {
+      min-width: 600px;
+    }
+  }
+
+  // Make forms more touch-friendly
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px; // Prevent zoom on iOS
+  }
+
+  // Improve button touch targets
+  .btn,
+  button {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+
+  // Make modals full-screen on mobile
+  .modal {
+    .modal-content {
+      max-width: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+
+  // Stack action buttons vertically
+  .action-buttons,
+  .button-group {
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+      margin: 4px 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  HEADER {
+    .side-menu-logo {
+      max-width: 120px;
+      height: 40px;
+    }
+
+    .product {
+      .cluster {
+        font-size: 12px;
+      }
+    }
+
+    .rd-header-right {
+      .header-btn {
+        width: 36px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  // Further reduce padding on very small screens
+  .main-layout .outlet {
+    padding: 8px;
+  }
+
+  // Make cards full-width
+  .card-container,
+  .dashboard-card {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
+// Touch-friendly enhancements
+@media (hover: none) and (pointer: coarse) {
+  // Increase click targets for touch devices
+  a, button, .btn, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  // Remove hover effects that don't work well on touch
+  *:hover {
+    transition: none;
+  }
+}
