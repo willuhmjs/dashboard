@@ -244,4 +244,31 @@ export default defineComponent({
   .modal-fade-leave-to {
     opacity: 0;
   }
+
+  // Mobile modal optimizations
+  @media (max-width: 768px) {
+    .modal-overlay {
+      .modal-container {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .modal-overlay {
+      align-items: flex-start;
+
+      .modal-container {
+        border-top: 0;
+        border-bottom: 0;
+      }
+    }
+  }
 </style>

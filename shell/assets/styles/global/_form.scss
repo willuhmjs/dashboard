@@ -144,3 +144,64 @@ INPUT.inline-input {
 .fixed select, .fixed.v-select, .fixed input:not(.vs__search){
   height: 50px;
 }
+
+// Mobile form optimizations
+@media (max-width: 768px) {
+  INPUT:not([type]),
+  INPUT[type='text'],
+  INPUT[type='password'],
+  INPUT[type='number'],
+  INPUT[type='date'],
+  INPUT[type='email'],
+  INPUT[type='search']:not(.vs__search),
+  INPUT[type='tel'],
+  INPUT[type='url'],
+  SELECT,
+  TEXTAREA {
+    // Prevent zoom on iOS
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  TEXTAREA {
+    min-height: 120px;
+  }
+
+  FORM {
+    .row {
+      flex-direction: column;
+
+      > * {
+        width: 100%;
+        margin-bottom: 16px;
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  .labeled-input,
+  .unlabeled-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  INPUT,
+  SELECT,
+  TEXTAREA {
+    padding: 12px;
+  }
+
+  LABEL {
+    font-size: 13px;
+  }
+}

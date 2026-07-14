@@ -1,5 +1,7 @@
 // Mobile-specific responsive styles
+// Comprehensive mobile optimization for the entire Rancher Dashboard
 
+// Tablet and mobile devices
 @media (max-width: 768px) {
   HEADER {
     flex-wrap: wrap;
@@ -65,22 +67,345 @@
   }
 
   // Make modals full-screen on mobile
-  .modal {
-    .modal-content {
-      max-width: 100%;
+  .modal,
+  .app-modal,
+  .prompt-modal,
+  .dialog {
+    .modal-container,
+    .modal-content,
+    .card-container {
+      max-width: 100% !important;
+      width: 100% !important;
       margin: 0;
       border-radius: 0;
+      height: 100vh;
+      max-height: 100vh;
+    }
+
+    .card-actions,
+    .modal-footer {
+      position: sticky;
+      bottom: 0;
+      background: var(--header-bg);
+      padding: 16px;
+      border-top: 1px solid var(--border);
     }
   }
 
   // Stack action buttons vertically
   .action-buttons,
-  .button-group {
+  .button-group,
+  .actions-container {
     flex-direction: column;
+    gap: 8px;
 
     > * {
       width: 100%;
       margin: 4px 0;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  // Resource list optimizations
+  .resource-list,
+  .list-page {
+    .masthead {
+      flex-wrap: wrap;
+      gap: 12px;
+
+      .search {
+        width: 100%;
+        order: 10;
+      }
+    }
+  }
+
+  // Sortable table enhancements
+  .sortable-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -8px;
+    padding: 0 8px;
+  }
+
+  table.sortable-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    thead, tbody, tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 8px 6px !important;
+      font-size: 13px;
+
+      &.row-check {
+        width: 40px;
+        min-width: 40px;
+      }
+
+      &.actions {
+        width: 60px;
+        min-width: 60px;
+      }
+    }
+  }
+
+  // Cards and panels
+  .card,
+  .card-container,
+  .dashboard-card,
+  .info-box {
+    margin: 12px 0;
+    width: 100%;
+
+    .card-body {
+      padding: 12px;
+    }
+  }
+
+  // Tabs
+  .tabs,
+  .tabbed {
+    .tab-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tabs-header {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+
+      .tab {
+        flex-shrink: 0;
+        min-width: auto;
+        padding: 10px 16px;
+      }
+    }
+  }
+
+  // Form optimizations
+  .row {
+    flex-direction: column;
+
+    > .col {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-bottom: 16px;
+    }
+  }
+
+  // Key-value pairs
+  .key-value,
+  .kv-container {
+    flex-direction: column;
+
+    .kv-item {
+      width: 100%;
+      margin-bottom: 12px;
+
+      .key,
+      .value {
+        width: 100%;
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  // Labels and badges
+  .badge,
+  .label,
+  .tag {
+    font-size: 11px;
+    padding: 4px 8px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  // Cluster/resource details
+  .detail-top {
+    flex-wrap: wrap;
+
+    .masthead {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .actions {
+      width: 100%;
+    }
+  }
+
+  // Navigation breadcrumbs
+  .breadcrumbs {
+    font-size: 13px;
+    flex-wrap: wrap;
+
+    .breadcrumb {
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  // Dropdowns
+  .dropdown,
+  .v-select,
+  .unlabeled-select,
+  .labeled-select {
+    .vs__dropdown-menu {
+      max-height: 200px;
+    }
+  }
+
+  // Code editors
+  .code-mirror,
+  .yaml-editor,
+  .json-editor {
+    font-size: 12px;
+
+    .CodeMirror {
+      font-size: 12px;
+      height: auto;
+      min-height: 300px;
+      max-height: 50vh;
+    }
+  }
+
+  // Charts and graphs
+  .graph,
+  .chart-container,
+  canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+
+  // Progress bars
+  .progress,
+  .progress-bar {
+    height: 8px;
+  }
+
+  // Tooltips
+  .tooltip,
+  .v-popper__popper {
+    max-width: 90vw !important;
+    font-size: 13px;
+  }
+
+  // ResourceDetail component
+  .resource-detail {
+    .masthead {
+      flex-direction: column;
+      align-items: flex-start;
+
+      h1 {
+        font-size: 20px;
+        word-break: break-word;
+      }
+    }
+
+    .detail-top .actions {
+      flex-wrap: wrap;
+    }
+  }
+
+  // Drawer/Slide-in panels
+  .drawer,
+  .slide-in {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  // Multi-column layouts
+  .col-span-2,
+  .col-span-3,
+  .col-span-4 {
+    grid-column: span 1 !important;
+  }
+
+  // Dashboard/cluster overview
+  .cluster-dashboard {
+    .counts {
+      flex-direction: column;
+
+      .count-box {
+        width: 100%;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  // Fixed headers in tables
+  thead.fixed-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  // Inline forms
+  .inline-form {
+    flex-direction: column;
+
+    .form-group {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+  }
+
+  // Status indicators
+  .state-dot,
+  .status-icon {
+    margin-right: 6px;
+  }
+
+  // Resource selection
+  .resource-select,
+  .target-select {
+    .target {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .target-name {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  // Pagination
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .page-link {
+      min-width: 40px;
+      padding: 8px 12px;
+    }
+  }
+
+  // Filters
+  .filter-bar,
+  .search-box {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  // Advanced sections/accordions
+  .advanced,
+  .accordion {
+    .accordion-header {
+      font-size: 14px;
+      padding: 12px;
     }
   }
 }
@@ -117,6 +442,134 @@
     width: 100%;
     margin: 8px 0;
   }
+
+  // Compact text
+  h1 {
+    font-size: 20px !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  // Smaller table text
+  table {
+    font-size: 12px;
+
+    th, td {
+      padding: 6px 4px !important;
+    }
+  }
+
+  // Compact badges
+  .badge,
+  .state-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  // Smaller buttons
+  .btn,
+  button {
+    min-height: 40px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .btn-sm {
+    min-height: 36px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  // Compact form elements
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  // Reduce spacing
+  .row,
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  // Hide less critical columns in tables
+  .sortable-table {
+    .optional-column,
+    .col-link-detail,
+    [data-priority="low"] {
+      display: none;
+    }
+  }
+
+  // Simplify resource lists
+  .masthead {
+    .title {
+      font-size: 18px;
+    }
+
+    .type-description {
+      display: none;
+    }
+  }
+
+  // Stack everything
+  .d-flex,
+  .flex-row {
+    flex-direction: column !important;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+// Landscape orientation optimizations
+@media (max-width: 768px) and (orientation: landscape) {
+  .dashboard-content {
+    .default-side-nav {
+      &.mobile-nav-open {
+        width: 60%;
+        max-width: 400px;
+      }
+    }
+  }
+
+  .modal,
+  .app-modal {
+    .modal-container {
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+
+  // Better use of horizontal space
+  .row {
+    flex-direction: row;
+
+    > .col {
+      width: 50%;
+      flex: 0 0 50%;
+    }
+  }
+
+  table.sortable-table {
+    th, td {
+      padding: 6px 8px !important;
+      font-size: 12px;
+    }
+  }
 }
 
 // Touch-friendly enhancements
@@ -130,5 +583,80 @@
   // Remove hover effects that don't work well on touch
   *:hover {
     transition: none;
+  }
+
+  // Improve touch scrolling
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // Prevent double-tap zoom
+  * {
+    touch-action: manipulation;
+  }
+
+  // Larger tap targets for links in text
+  p a,
+  li a {
+    padding: 4px 2px;
+    margin: -4px -2px;
+  }
+
+  // Better spacing for checkboxes and radios
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+
+  // Improve select dropdowns
+  select {
+    padding-right: 32px;
+    background-size: 20px;
+  }
+}
+
+// High DPI displays (retina screens)
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  // Ensure images and icons are crisp
+  img,
+  .icon,
+  svg {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .default-side-nav {
+    transition: none !important;
+  }
+}
+
+// Dark mode specific mobile adjustments
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  // Improve contrast on dark backgrounds for small text
+  .sortable-table {
+    th, td {
+      font-weight: 500;
+    }
+  }
+
+  // Brighter borders for better visibility
+  .card,
+  .modal,
+  input,
+  select {
+    border-color: rgba(255, 255, 255, 0.2);
   }
 }

@@ -282,4 +282,53 @@ export default {
       display: inline-block;
     }
   }
+
+  // Mobile optimizations
+  @media (max-width: 768px) {
+    header {
+      margin-bottom: 16px;
+
+      .title {
+        h1 {
+          font-size: 20px;
+        }
+      }
+    }
+
+    header.with-subheader {
+      grid-template-areas:
+        'type-banner'
+        'title'
+        'actions'
+        'sub-header'
+        'state-banner';
+      grid-template-columns: 1fr;
+      margin-bottom: 16px;
+
+      .actions-container {
+        margin-top: 12px;
+      }
+    }
+
+    .sub-header {
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header {
+      margin-bottom: 12px;
+
+      .title {
+        h1 {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .sub-header {
+      font-size: 13px;
+    }
+  }
 </style>

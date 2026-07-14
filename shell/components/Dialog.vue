@@ -132,5 +132,33 @@ export default {
         margin-right: 10px;
       }
     }
+
+    // Mobile optimizations
+    @media (max-width: 768px) {
+      padding: 16px;
+
+      h4 {
+        font-size: 18px;
+      }
+
+      .dialog-buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+
+        > * {
+          width: 100%;
+          margin-right: 0 !important;
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 12px;
+
+      h4 {
+        font-size: 16px;
+      }
+    }
   }
 </style>

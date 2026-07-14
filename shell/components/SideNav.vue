@@ -582,4 +582,39 @@ export default {
     display: flex;
   }
 
+  // Mobile optimizations
+  @media (max-width: 768px) {
+    .side-nav {
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+      z-index: 1001;
+
+      .tools {
+        margin: 8px;
+
+        A {
+          padding: 8px;
+          font-size: 13px;
+
+          > I {
+            margin-right: 3px;
+          }
+        }
+      }
+
+      :deep() {
+        .accordion {
+          font-size: 14px;
+        }
+
+        .nav-item {
+          padding: 10px 12px;
+        }
+
+        h6 {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
 </style>

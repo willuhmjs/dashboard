@@ -124,3 +124,79 @@ $DEFAULT_COLUMNS: 12;
 
 
 //breakpoint stuff here
+
+// Mobile column optimizations
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+
+    .col {
+      width: 100% !important;
+      margin-right: 0;
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // Reset all column widths on mobile
+    @each $cols in $COLUMNS {
+      $span: $cols;
+      $suffix: null;
+
+      @if ( $cols != $DEFAULT_COLUMNS ) {
+        $suffix: -of-#{$cols}
+      }
+
+      @while $span > 0 {
+        .span-#{$span}#{$suffix} {
+          width: 100% !important;
+        }
+
+        .offset-#{$span}#{$suffix} {
+          margin-left: 0 !important;
+        }
+
+        $span: $span - 1;
+      }
+    }
+  }
+
+  .container-flex {
+    flex-direction: column;
+
+    .flex-item-half {
+      width: 100%;
+    }
+  }
+
+  .row-same-height {
+    display: block;
+  }
+}
+
+// Tablet landscape - two columns
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+  .row {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .col {
+      width: calc(50% - #{$column-gutter / 2}) !important;
+      margin-right: $column-gutter;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .container-flex {
+    flex-direction: row;
+
+    .flex-item-half {
+      width: 50%;
+    }
+  }
+}
