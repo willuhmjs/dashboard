@@ -56,6 +56,7 @@ export default {
     return {
       noLocaleShortcut: process.env.dev || false,
       wantNavSync:      false,
+      isMobileNavOpen:  false,
     };
   },
 
@@ -127,6 +128,10 @@ export default {
       };
     },
 
+    handleToggleMobileNav(isOpen) {
+      this.isMobileNavOpen = isOpen;
+    },
+
     toggleNoneLocale() {
       this.$store.dispatch('i18n/toggleNone');
     },
@@ -185,10 +190,16 @@ export default {
       class="dashboard-content"
       :class="{'dashboard-padding-left': showTopLevelMenu}"
     >
-      <Header />
+      <div
+        v-if="isMobileNavOpen"
+        class="mobile-nav-overlay"
+        @click="isMobileNavOpen = false"
+      />
+      <Header @toggle-mobile-nav="handleToggleMobileNav" />
       <SideNav
         v-if="clusterReady"
         class="default-side-nav"
+        :class="{'mobile-nav-open': isMobileNavOpen}"
       />
       <main
         v-if="clusterAndRouteReady"
@@ -266,6 +277,21 @@ export default {
 
   &:focus {
     transform: translate(1rem, 1rem);
+  }
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
   }
 }
 </style>

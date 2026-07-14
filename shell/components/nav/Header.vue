@@ -80,7 +80,8 @@ export default {
       navHeaderRight:          null,
       extensionHeaderActions:  getApplicableExtensionEnhancements(this, ExtensionPoint.ACTION, ActionLocation.HEADER, this.$route),
       extensionActionsEnabled: {},
-      ctx:                     this
+      ctx:                     this,
+      isMobileNavOpen:         false
     };
   },
 
@@ -361,6 +362,11 @@ export default {
       this.isUserMenuOpen = show;
     },
 
+    toggleMobileNav() {
+      this.isMobileNavOpen = !this.isMobileNavOpen;
+      this.$emit('toggle-mobile-nav', this.isMobileNavOpen);
+    },
+
     openImport() {
       this.$store.dispatch('cluster/promptModal', {
         component:      'ImportDialog',
@@ -469,6 +475,16 @@ export default {
     ref="header"
     data-testid="header"
   >
+    <button
+      class="mobile-menu-toggle"
+      aria-label="Toggle navigation"
+      @click="toggleMobileNav"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
     <div>
       <TopLevelMenu v-if="showTopLevelMenu" />
     </div>
@@ -1206,6 +1222,35 @@ export default {
         background-color: var(--border);
         height: 1px;
       }
+    }
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 1001;
+
+    .hamburger-line {
+      width: 100%;
+      height: 3px;
+      background-color: var(--header-btn-text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &:hover .hamburger-line {
+      background-color: var(--link);
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
     }
   }
 
