@@ -187,7 +187,7 @@ HEADER {
 
   .main-layout {
     .outlet {
-      padding: $space-s;
+      padding: 8px;
     }
   }
 
@@ -198,12 +198,12 @@ HEADER {
       'actions'
       'state-banner';
     grid-template-columns: 1fr;
-    padding: $space-s;
+    padding: 8px;
 
     .actions-container {
       margin-left: 0;
       text-align: left;
-      margin-top: $space-xs;
+      margin-top: 8px;
     }
   }
 }
@@ -211,12 +211,12 @@ HEADER {
 @media (max-width: 480px) {
   .main-layout {
     .outlet {
-      padding: $space-xs;
+      padding: 4px;
     }
   }
 
   HEADER {
-    padding: $space-xs;
+    padding: 4px;
   }
 }
 
