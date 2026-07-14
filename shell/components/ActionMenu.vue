@@ -362,4 +362,45 @@ export default {
     opacity: 0;
     z-index: z-index('dropdownOverlay');
   }
+
+  // Mobile optimizations
+  @media (max-width: 768px) {
+    .menu {
+      min-width: 200px;
+      max-width: 90vw;
+      font-size: 14px;
+
+      LI {
+        padding: 12px 16px;
+        min-height: 44px;
+
+        &:not(.divider):active {
+          background-color: var(--dropdown-hover-bg);
+        }
+
+        .icon {
+          width: 20px;
+          margin-right: 12px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .menu {
+      min-width: 180px;
+      font-size: 13px;
+      border-radius: 8px;
+
+      LI {
+        padding: 10px 14px;
+
+        .icon {
+          width: 18px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 </style>

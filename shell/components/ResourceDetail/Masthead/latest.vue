@@ -89,4 +89,42 @@ const store = useStore();
   margin: 0;
   margin-bottom: 24px;
 }
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  .new.state-banner {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  :deep() .metadata-section {
+    margin-top: 12px;
+    margin-bottom: 16px;
+
+    .metadata-item {
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+  }
+
+  .cards-section {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new.state-banner {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+
+  :deep() .metadata-section {
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  .cards-section {
+    margin-bottom: 12px;
+  }
+}
 </style>

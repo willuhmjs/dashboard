@@ -94,11 +94,27 @@ These mobile features work on:
 
 ## Files Modified
 
-- `shell/assets/styles/app.scss` - Added mobile stylesheet import
+### Core Styles
+- `shell/assets/styles/app.scss` - Added mobile stylesheets
 - `shell/assets/styles/global/_layout.scss` - Mobile layout media queries
-- `shell/assets/styles/global/_mobile.scss` - Mobile-specific styles (new)
-- `shell/components/nav/Header.vue` - Mobile menu toggle
-- `shell/components/templates/default.vue` - Mobile nav state management
+- `shell/assets/styles/global/_mobile.scss` - Comprehensive mobile styles (new)
+- `shell/assets/styles/global/_mobile-utilities.scss` - Mobile utility classes (new)
+
+### Global Component Styles
+- `shell/assets/styles/global/_button.scss` - Mobile button optimizations
+- `shell/assets/styles/global/_cards.scss` - Responsive cards
+- `shell/assets/styles/global/_columns.scss` - Mobile column layouts
+- `shell/assets/styles/global/_form.scss` - Touch-friendly forms
+- `shell/assets/styles/global/_select.scss` - Mobile select dropdowns
+- `shell/assets/styles/global/_table.scss` - Scrollable tables
+
+### Vue Components
+- `shell/components/nav/Header.vue` - Hamburger menu toggle
+- `shell/components/templates/default.vue` - Mobile nav state
+- `shell/components/SideNav.vue` - Mobile navigation styles
+- `shell/components/AppModal.vue` - Full-screen mobile modals
+- `shell/components/Dialog.vue` - Responsive dialogs
+- `shell/components/ResourceList/Masthead.vue` - Mobile masthead
 
 ## Future Improvements
 

@@ -1037,4 +1037,79 @@ export default {
   border-collapse: separate;
   z-index: 0; // Prevent label from cover other elements outside of the input
 }
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  .key-value {
+    .kv-container {
+      column-gap: 10px;
+      row-gap: 12px;
+
+      .kv-item {
+        margin: 8px 0;
+
+        input,
+        textarea {
+          font-size: 16px; // Prevent iOS zoom
+          min-height: 44px;
+        }
+
+        textarea {
+          min-height: 100px;
+        }
+      }
+    }
+
+    .remove {
+      BUTTON {
+        min-width: 44px;
+        min-height: 44px;
+      }
+    }
+
+    .title {
+      font-size: 14px;
+      margin-bottom: 12px;
+
+      .read-from-file {
+        float: none;
+        display: block;
+        margin-top: 8px;
+      }
+    }
+
+    .footer {
+      .protip {
+        float: none;
+        display: block;
+        text-align: left;
+        padding: 8px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .key-value {
+    .kv-container {
+      display: flex;
+      flex-direction: column;
+      column-gap: 0;
+
+      .kv-item {
+        width: 100%;
+
+        &.key,
+        &.value,
+        &.extra {
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    .title {
+      font-size: 13px;
+    }
+  }
+}
 </style>

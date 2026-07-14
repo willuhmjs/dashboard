@@ -698,4 +698,126 @@ export default {
     background-color: var(--body-bg);
   }
 }
+
+// Mobile tab optimizations
+@media (max-width: 768px) {
+  .tabs {
+    &.horizontal {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      border: none;
+      border-bottom: 1px solid var(--border);
+
+      &.remove-borders {
+        + .tab-container {
+          padding-top: 16px;
+        }
+      }
+
+      .tab {
+        flex-shrink: 0;
+        padding: 0 2px;
+
+        A {
+          padding: 12px 16px;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+
+        .tab-badge {
+          font-size: 10px;
+          padding: 1px 5px;
+        }
+      }
+    }
+  }
+
+  .tab-container {
+    padding: 16px 12px;
+
+    &.no-content {
+      padding: 0;
+    }
+  }
+
+  .tabs-only {
+    margin-bottom: 16px;
+  }
+
+  .side-tabs {
+    flex-direction: column;
+    border-radius: var(--border-radius);
+
+    .tabs {
+      width: 100%;
+      min-width: 100%;
+      flex-direction: row;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+
+      .tab {
+        flex-shrink: 0;
+        border-left: none;
+        border-bottom: solid 3px transparent;
+
+        &.active {
+          border-left: none;
+          border-bottom: solid 3px var(--active, var(--primary));
+        }
+
+        A {
+          padding: 12px 16px;
+          font-size: 14px;
+        }
+      }
+
+      .tab-list-footer {
+        display: none; // Hide footer buttons on mobile side tabs
+      }
+    }
+
+    .tab-container {
+      width: 100%;
+      padding: 16px 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs {
+    &.horizontal {
+      .tab {
+        A {
+          padding: 10px 12px;
+          font-size: 13px;
+        }
+
+        .tab-label-icon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .tab-container {
+    padding: 12px 8px;
+  }
+
+  .side-tabs {
+    .tabs {
+      .tab {
+        A {
+          padding: 10px 12px;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .tab-container {
+      padding: 12px 8px;
+    }
+  }
+}
 </style>

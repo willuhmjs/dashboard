@@ -530,4 +530,58 @@ export default {
   .required {
     color: var(--error);
   }
+
+  // Mobile optimizations
+  @media (max-width: 768px) {
+    .box {
+      grid-template-columns: 1fr 50px;
+      gap: 8px;
+      margin-bottom: 12px;
+
+      .value {
+        INPUT {
+          font-size: 16px; // Prevent iOS zoom
+          min-height: 44px;
+        }
+      }
+    }
+
+    .remove {
+      BUTTON {
+        min-width: 44px;
+        min-height: 44px;
+      }
+    }
+
+    .title {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .footer {
+      .protip {
+        float: none;
+        display: block;
+        padding: 8px 0;
+        font-size: 13px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .box {
+      grid-template-columns: 1fr 44px;
+      gap: 6px;
+
+      .value {
+        INPUT {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .title {
+      font-size: 13px;
+    }
+  }
 </style>
