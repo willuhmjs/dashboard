@@ -583,10 +583,33 @@ export default {
   }
 
   // Mobile optimizations
+  //
+  // Positioning lives here (rather than in the shared _layout.scss, which targets this element via
+  // the global `.default-side-nav` class) because a scoped selector on the component's own root -
+  // `.side-nav` above sets `position: relative` - can otherwise win a specificity tie against it
+  // depending on style injection order, silently breaking the mobile flyout.
   @media (max-width: 768px) {
     .side-nav {
+      position: fixed;
+      top: var(--header-height);
+      left: -100%;
+      height: calc(100vh - var(--header-height));
+      width: 80%;
+      max-width: 300px;
+      transition: left 0.3s ease-in-out;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
       z-index: 1001;
+
+      &.mobile-nav-open {
+        left: $app-bar-collapsed-width;
+      }
+
+      @media (orientation: landscape) {
+        &.mobile-nav-open {
+          width: 60%;
+          max-width: 400px;
+        }
+      }
 
       .tools {
         margin: 8px;

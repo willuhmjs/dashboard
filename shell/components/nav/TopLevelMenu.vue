@@ -27,6 +27,8 @@ export default {
     Pinned
   },
 
+  emits: ['toggled'],
+
   data() {
     const sideNavServiceInitialized = sideNavService.initialized;
     const maxClustersToShow = MENU_MAX_CLUSTERS;
@@ -370,7 +372,13 @@ export default {
         await this.helper.updateCount(neu);
       },
       immediate: true,
-    }
+    },
+
+    // On mobile there's no room to show this menu expanded alongside the resource nav (SideNav),
+    // so the hamburger's open/close state is also used to drive that nav's mobile flyout.
+    shown(neu) {
+      this.$emit('toggled', neu);
+    },
 
   },
 
@@ -1663,6 +1671,49 @@ export default {
         color: var(--primary-hover-text);
         text-decoration: none;
       }
+    }
+  }
+
+  // There isn't room to show this menu expanded alongside the resource nav (SideNav) on mobile,
+  // so keep it at its collapsed icon-rail width and let the hamburger drive SideNav's flyout instead.
+  @media (max-width: 768px) {
+    .side-menu {
+      &.menu-open {
+        width: $app-bar-collapsed-width;
+      }
+
+      // The rail's width is locked above regardless of open/close state, but content sized for
+      // the fully expanded (300px) layout is normally only hidden via `&.menu-close`-qualified
+      // rules elsewhere in this file - without also hiding it here, it overflows this
+      // permanently collapsed-width rail instead of being clipped away when `.menu-open` is set.
+      .side-menu-logo {
+        opacity: 0;
+      }
+
+      .category-title span {
+        opacity: 0;
+      }
+
+      .category-title hr,
+      .clustersPinned .category-title hr {
+        width: 40px;
+      }
+
+      .clusters-all {
+        flex-direction: row;
+
+        span I {
+          display: none;
+        }
+      }
+
+      .footer {
+        width: 50px;
+      }
+    }
+
+    .side-menu-glass {
+      display: none;
     }
   }
 </style>

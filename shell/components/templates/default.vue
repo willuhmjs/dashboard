@@ -132,6 +132,13 @@ export default {
       this.isMobileNavOpen = isOpen;
     },
 
+    // Keep the SideNav flyout and the TopLevelMenu hamburger's own state (which drives it) in sync
+    // when the nav is dismissed by tapping outside of it, rather than via the hamburger itself.
+    closeMobileNav() {
+      this.isMobileNavOpen = false;
+      this.$refs.header?.closeMobileNav();
+    },
+
     toggleNoneLocale() {
       this.$store.dispatch('i18n/toggleNone');
     },
@@ -193,9 +200,12 @@ export default {
       <div
         v-if="isMobileNavOpen"
         class="mobile-nav-overlay"
-        @click="isMobileNavOpen = false"
+        @click="closeMobileNav"
       />
-      <Header @toggle-mobile-nav="handleToggleMobileNav" />
+      <Header
+        ref="header"
+        @toggle-mobile-nav="handleToggleMobileNav"
+      />
       <SideNav
         v-if="clusterReady"
         class="default-side-nav"
@@ -292,6 +302,8 @@ export default {
 
   @media (max-width: 768px) {
     display: block;
+    // Leave the always-visible collapsed icon rail (TopLevelMenu) undimmed and clickable.
+    left: $app-bar-collapsed-width;
   }
 }
 </style>

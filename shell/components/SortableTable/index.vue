@@ -1879,6 +1879,14 @@ export default {
     margin-left: 10px;
     min-width: 180px;
   }
+
+  @media (max-width: 768px) {
+    .search-box {
+      width: 100%;
+      min-width: 0;
+      margin-left: 0;
+    }
+  }
 </style>
 
 <style lang="scss">
@@ -2227,6 +2235,31 @@ export default {
     SPAN {
       display: inline-block;
       min-width: 200px;
+    }
+  }
+
+  // .fixed-header-actions is a fixed 3-column grid (bulk/middle/search) with non-shrinking
+  // tracks (a >=180px search input, min-content icon buttons) - on a narrow viewport their
+  // combined minimum width routinely exceeds it, and grid tracks don't wrap like flex items do.
+  // Stack them into a single column instead so the row can't force the page to overflow.
+  @media (max-width: 768px) {
+    .fixed-header-actions {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'bulk'
+        'middle'
+        'search';
+      row-gap: 8px;
+
+      &.advanced-filtering,
+      &.button {
+        grid-template-columns: 1fr;
+      }
+
+      .search {
+        text-align: left;
+        justify-content: flex-start;
+      }
     }
   }
 </style>

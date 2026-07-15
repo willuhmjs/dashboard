@@ -155,6 +155,12 @@ HEADER {
 
 // Mobile responsive styles
 @media (max-width: 768px) {
+  // Safety net: prefer clipping an unexpectedly-wide element over letting the whole page pan
+  // sideways, which is a much more jarring result of the same underlying width miscalculation.
+  .dashboard-root {
+    overflow-x: hidden;
+  }
+
   .dashboard-content {
     grid-template-areas:
       "header  header"
@@ -163,26 +169,13 @@ HEADER {
     grid-template-rows: var(--header-height) auto var(--wm-height, 0px);
     grid-template-columns: 1fr;
 
-    &.dashboard-padding-left {
-      padding-left: 0;
-    }
+    // The TopLevelMenu icon rail is always visible (fixed at $app-bar-collapsed-width even on
+    // mobile - see TopLevelMenu.vue), so keep reserving room for it via the base
+    // `&.dashboard-padding-left` rule above instead of zeroing it out here, or page content
+    // renders underneath the rail and gets clipped on the left edge.
 
-    .default-side-nav {
-      position: fixed;
-      top: var(--header-height);
-      left: -100%;
-      height: calc(100vh - var(--header-height));
-      width: 80%;
-      max-width: 300px;
-      z-index: 1000;
-      transition: left 0.3s ease-in-out;
-      background-color: var(--nav-bg);
-      overflow-y: auto;
-
-      &.mobile-nav-open {
-        left: 0;
-      }
-    }
+    // .default-side-nav's mobile flyout positioning (position/left/width/z-index) lives in
+    // SideNav.vue's own scoped styles, not here - see that file for why.
   }
 
   .main-layout {

@@ -38,14 +38,18 @@
     }
   }
 
-  // Make tables horizontally scrollable
-  .sortable-table {
+  // Make tables horizontally scrollable instead of squeezing columns unreadably narrow.
+  // `.sortable-table` is the `<table>` element itself, not a wrapper div. Only its own
+  // display changes to `block` here - its `thead`/`tbody`/`tr`/`td` children keep their native
+  // table display values, so the browser generates one shared anonymous table box around them
+  // (per the CSS anonymous-table-object rules) and header/body columns stay aligned. Forcing
+  // `thead`/`tbody`/`tr` into their own explicit `display: table` boxes (a previous version of
+  // this rule did that) instead gives each row its own independent column grid, which is what
+  // caused header/body cells to misalign and render on top of each other.
+  table.sortable-table {
+    display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-
-    table {
-      min-width: 600px;
-    }
   }
 
   // Make forms more touch-friendly
@@ -132,16 +136,9 @@
     padding: 0 8px;
   }
 
+  // (scrolling/display for table.sortable-table itself is set above, alongside why)
   table.sortable-table {
-    display: block;
-    overflow-x: auto;
     white-space: nowrap;
-
-    thead, tbody, tr {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-    }
 
     th, td {
       padding: 8px 6px !important;
@@ -536,16 +533,8 @@
 }
 
 // Landscape orientation optimizations
+// (the SideNav flyout's own landscape width override lives in SideNav.vue's scoped styles)
 @media (max-width: 768px) and (orientation: landscape) {
-  .dashboard-content {
-    .default-side-nav {
-      &.mobile-nav-open {
-        width: 60%;
-        max-width: 400px;
-      }
-    }
-  }
-
   .modal,
   .app-modal {
     .modal-container {

@@ -58,6 +58,8 @@ export default {
     }
   },
 
+  emits: ['toggle-mobile-nav'],
+
   fetch() {
     // fetch needed data to check if any auth provider is enabled
     this.$store.dispatch('auth/getAuthProviders');
@@ -81,7 +83,6 @@ export default {
       extensionHeaderActions:  getApplicableExtensionEnhancements(this, ExtensionPoint.ACTION, ActionLocation.HEADER, this.$route),
       extensionActionsEnabled: {},
       ctx:                     this,
-      isMobileNavOpen:         false
     };
   },
 
@@ -340,6 +341,11 @@ export default {
         return;
       }
 
+      // On mobile the header can wrap onto a second row, so its real height can exceed the
+      // fixed --header-height theme variable. Keep it in sync - the grid row height, the
+      // SideNav flyout and its overlay all position themselves off of it.
+      document.documentElement.style.setProperty('--header-height', `${ header.offsetHeight }px`);
+
       // If the product element has an exact size, remove it and then recalculate
       if (product.style.width) {
         product.style.width = '';
@@ -362,9 +368,10 @@ export default {
       this.isUserMenuOpen = show;
     },
 
-    toggleMobileNav() {
-      this.isMobileNavOpen = !this.isMobileNavOpen;
-      this.$emit('toggle-mobile-nav', this.isMobileNavOpen);
+    // Called by the parent layout when the mobile nav overlay is dismissed, to keep this in sync
+    // with the SideNav flyout it drives via TopLevelMenu's 'toggled' event.
+    closeMobileNav() {
+      this.$refs.topLevelMenu?.hide();
     },
 
     openImport() {
@@ -475,18 +482,12 @@ export default {
     ref="header"
     data-testid="header"
   >
-    <button
-      class="mobile-menu-toggle"
-      aria-label="Toggle navigation"
-      @click="toggleMobileNav"
-    >
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-
     <div>
-      <TopLevelMenu v-if="showTopLevelMenu" />
+      <TopLevelMenu
+        v-if="showTopLevelMenu"
+        ref="topLevelMenu"
+        @toggled="$emit('toggle-mobile-nav', $event)"
+      />
     </div>
 
     <div
@@ -1125,6 +1126,17 @@ export default {
     }
   }
 
+  // The workspace/namespace switcher plus the import/shell/kubeconfig/search buttons don't
+  // shrink (unlike .product, which layoutHeader() actively resizes) - let them wrap onto their
+  // own line(s) on mobile instead of forcing this row wider than the viewport.
+  @media (max-width: 768px) {
+    .rd-header-right {
+      flex-wrap: wrap;
+      row-gap: 4px;
+      justify-content: flex-end;
+    }
+  }
+
   .list-unstyled {
     li {
       a {
@@ -1222,35 +1234,6 @@ export default {
         background-color: var(--border);
         height: 1px;
       }
-    }
-  }
-
-  .mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    cursor: pointer;
-    z-index: 1001;
-
-    .hamburger-line {
-      width: 100%;
-      height: 3px;
-      background-color: var(--header-btn-text);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    &:hover .hamburger-line {
-      background-color: var(--link);
-    }
-
-    @media (max-width: 768px) {
-      display: flex;
     }
   }
 
